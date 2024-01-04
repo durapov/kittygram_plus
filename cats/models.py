@@ -1,7 +1,7 @@
 from django.db import models
 
 
-class Achievwment(models.Model):
+class Achievement(models.Model):
     name = models.CharField(max_length=64)
 
     def __str__(self):
@@ -23,7 +23,7 @@ class Cat(models.Model):
     owner = models.ForeignKey(
         Owner, related_name='cats', on_delete=models.CASCADE)
     achievements = models.ManyToManyField(
-        Achievwment, through='AchievementCat')
+        Achievement, through='AchievementCat')
 
     def __str__(self):
         return self.name
@@ -31,7 +31,7 @@ class Cat(models.Model):
 
 class AchievementCat(models.Model):
     achievement = models.ForeignKey(
-        Achievwment, on_delete=models.CASCADE)
+        Achievement, on_delete=models.CASCADE)
     cat = models.ForeignKey(Cat, on_delete=models.CASCADE)
 
     def __str__(self):
